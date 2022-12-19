@@ -135,3 +135,17 @@ resource "upcloud_server" "s2s_vpn_vm" {
     command = count.index == 0 ? "bash attach-floating-ip.sh ${upcloud_floating_ip_address.fip-1.ip_address} ${self.network_interface[0].mac_address}" : "echo done"
   }
 }
+
+resource "upcloud_server_group" "vpn-ha-pair" {
+  title         = "vpn_ha_group"
+  anti_affinity = true
+  labels = {
+    "key1" = "vpn-ha"
+
+  }
+  members = [
+    upcloud_server.s2s_vpn_vm[0].id,
+    upcloud_server.s2s_vpn_vm[1].id
+  ]
+
+}
