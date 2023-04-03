@@ -16,8 +16,8 @@ does not happen automatically and it requires moving floating IP to second VPN C
 
 ### Prerequisites
 
-Project uses [Terraform](https://www.terraform.io/) and it needs to be installed. We're also using UpCloud's 
-Terraform provider, but it should be automatically installed by running `terraform init` or with `make init`.
+Project uses [Terraform](https://www.terraform.io/) and it needs to be installed. We're also using AWS and UpCloud 
+Terraform providers, but these should be automatically installed by running `terraform init` or with `make init`.
 
 To create the resources with Terraform, you'll need your API credentials exported.
 
@@ -43,8 +43,7 @@ zone = "pl-waw1"
 server_plan = "1xCPU-1GB"
 ssh_key_public = "ssh-rsa AAAA_YOUR_SSH_PUBLIC_KEY"
 ```
-You should change the VRRP password (auth_pass) in `configs/keepalived.conf.tftpl` and depending on remote 
-VPN service setting you might need to change settings in `configs/ipsec.conf.tftpl`.
+You should change the VRRP password (auth_pass) in `configs/keepalived.conf.tftpl` 
 
 ### Quickstart
 
@@ -54,7 +53,7 @@ so Terraform scripts can SSH into VMs using agent forwarding**
 
 ### Creating services with basic configuration
 
-Initate the project and install providers.
+Initiate the project and install providers.
 
 ```
 make init
